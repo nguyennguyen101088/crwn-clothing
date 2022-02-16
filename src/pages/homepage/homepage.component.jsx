@@ -2,9 +2,9 @@ import React from "react";
 import Directory from "../../components/directory/directory.component";
 import './homepage.style.scss';
 
-const HomePage = () => (
+const HomePage = ({history}) => (
     <div className="homepage">
-        <Directory />
+        <Directory history={history} />
     </div>
 )
 export default HomePage;
