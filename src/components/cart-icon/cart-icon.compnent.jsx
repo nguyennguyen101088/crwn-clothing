@@ -12,7 +12,7 @@ const CartIcon = ({ toogleCartHidden }) => (
 );
 
 const mapDispatchToPros = dispatch => ({
-    toogleHiddenCart: () => dispatch(toogleCartHidden())
+    toogleCartHidden: () => dispatch(toogleCartHidden())
 });
 
 export default connect(null, mapDispatchToPros) (CartIcon);
