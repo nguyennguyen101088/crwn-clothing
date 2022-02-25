@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { auth, createUserProfileDocument, addCollectionAndDocument } from './firebase/firebase.util';
+import { auth, createUserProfileDocument, addCollectionAndDocuments } from './firebase/firebase.util';
 import './App.css';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPageComponent from './pages/shop/shop.component';
@@ -34,8 +34,8 @@ class App extends React.Component {
         });
       }
 
-      setCurrentUser({ userAuth });
-      addCollectionAndDocument('collections', collectionsArray);
+      setCurrentUser(null);
+      //addCollectionAndDocuments('collections', collectionsArray);
     });
   }
 
@@ -44,25 +44,26 @@ class App extends React.Component {
   }
 
   render() {
+    const { currentUser } = this.props; 
     return (
       <div>
         <HeaderComponent />
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/shop' component={ShopPageComponent} />
-          {/* <Route
+          <Route
             exact
             path='/signin'
             render={() =>
-              this.props.currentUser ? (
+              currentUser ? (
                 <Redirect to='/' />
               ) : (
                 <SignInAndSignUpComponent />
               )
             }
-          /> */}
-          <Route
-            exact path='/signin' component={SignInAndSignUpComponent} />
+          />
+          {/* <Route
+            exact path='/signin' component={SignInAndSignUpComponent} /> */}
           <Route exact path='/checkout' component={CheckOutComponent} />
         </Switch>
       </div>
